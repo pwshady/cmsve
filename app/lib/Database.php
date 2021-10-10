@@ -24,6 +24,28 @@ class Database
 		}
 	}
 
+	/**
+	 * The function gets values ​​from the table by key
+	 */
+	public function getKeyValue(string $nameTable = "", string $nameColumnKey = "", string $nameColumnValue = "", string $key = ""): array
+	{
+		$sql = "SELECT * FROM " . $nameTable;
+		if ($key != ""){
+			$sql .= (" WHERE " . $nameColumnKey . "= :key");
+		};
+		$stmt = $this->database->prepare($sql);
+		if ($key != ""){
+			$stmt->bindValue(":key", $key);
+		};
+		try{
+			$stmt->execute();
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		catch(PDOException $e){
+			return [];
+		};
+	}
+
     /**
 	 * The function imports the available rows to and from the table.
 	 * @param Table name. Default - "". Format: string.
