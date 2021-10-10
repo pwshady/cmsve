@@ -16,9 +16,6 @@ use app\lib\basic;
 
 session_start();
 
-//Подключаемся к БД
-$database = new Database("app/config/db-config.php");
-
 $router = new Router($_SERVER["REQUEST_URI"]);
-print_r($GLOBALS["page"]["body"]);
+
 

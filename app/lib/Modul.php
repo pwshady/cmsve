@@ -2,7 +2,7 @@
 
 namespace app\lib;
 
-class Modul
+class Modul extends Basic
 {
 
 }

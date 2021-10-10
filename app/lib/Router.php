@@ -28,7 +28,6 @@ class Router extends Basic
 
     public function createPage(string $request)
     {
-        print("</br>1111111111-" . $request);
         $database = new Database("app/config/db-config.php");
         $moduls = $database->getKeyValue("sitemap", "directory", "modul", $request);
         if (count($moduls) === 0){
@@ -40,18 +39,22 @@ class Router extends Basic
         $GLOBALS["page"]["header"] = "<!DOCTYPE html>" .PHP_EOL . "<header>" .PHP_EOL;
         $GLOBALS["page"]["body"] = "<body>" .PHP_EOL;
         $GLOBALS["page"]["footer"] = "<footer>" .PHP_EOL;
+        $_SESSION["page"] = $request;
         for($i = 0; $i < count($moduls); $i++){
             if((substr($moduls[$i]["modul"], -1)) !== "/"){
-                $str = "sitemap/" . $moduls[$i]["directory"] . $moduls[$i]["modul"] . "\index.php";
-                if ($this->fileSearch("sitemap/" . $moduls[$i]["directory"] . $moduls[$i]["modul"] . "/", "index.php")){
-                    require "sitemap/" . $moduls[$i]["directory"] . $moduls[$i]["modul"] . "/" . "index.php";
+                if ($this->fileSearch("site" . $moduls[$i]["directory"] . $moduls[$i]["modul"], "index.php")){
+                    $_SESSION["page_modul"] = $_SESSION["page"] . $moduls[$i]["modul"];
+                    require "site" . $moduls[$i]["directory"] . $moduls[$i]["modul"] . "/" . "index.php";
                 }else{
                     $GLOBALS["page"]["body"] .= "<p>Modul no found</p>" .PHP_EOL;
                 }
             }
         }
-        print_r(count($moduls));
-        var_dump($moduls);
+
+
+
+
+        print_r($GLOBALS["page"]["body"]);
     }
 
 }
