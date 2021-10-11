@@ -16,6 +16,10 @@ use app\lib\basic;
 
 session_start();
 
+
 $router = new Router($_SERVER["REQUEST_URI"]);
+
+
+
 
 

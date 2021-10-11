@@ -1,0 +1,3 @@
+<?
+
+$localization = "localization/en/";

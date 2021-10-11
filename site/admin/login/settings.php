@@ -1,4 +1,4 @@
 <?
 
 $localization = "localization/ru/";
-$accessTable = "admin_login";
+$accessTable = "_admin_login";

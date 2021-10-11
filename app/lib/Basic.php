@@ -29,5 +29,11 @@ class Basic
 
     }
 
+    public function gotoPage(string $pageName)
+    {
+		header("location:" . $pageName);
+		exit;
+    }
+
 
 }

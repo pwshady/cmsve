@@ -1,5 +1,7 @@
 AddDefaultCharset utf-8
 
+php_value session.gc_maxlifetime 0
+php_value session.cookie_lifetime 0
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

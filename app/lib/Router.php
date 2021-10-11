@@ -39,7 +39,7 @@ class Router extends Basic
         $GLOBALS["page"]["header"] = "<!DOCTYPE html>" .PHP_EOL . "<header>" .PHP_EOL;
         $GLOBALS["page"]["body"] = "<body>" .PHP_EOL;
         $GLOBALS["page"]["footer"] = "<footer>" .PHP_EOL;
-        $_SESSION["page"] = $request;
+        $_SESSION["page"] = str_replace("/", "_", $request);
         for($i = 0; $i < count($moduls); $i++){
             if((substr($moduls[$i]["modul"], -1)) !== "/"){
                 if ($this->fileSearch("site" . $moduls[$i]["directory"] . $moduls[$i]["modul"], "index.php")){

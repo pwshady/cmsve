@@ -25,6 +25,21 @@ class Database
 	}
 
 	/**
+	 * 
+	 */
+	public function getTable(string $nameTable = ""): array
+	{
+		$stmt = $this->database->prepare("SELECT * FROM " . $nameTable);
+		try{
+			$stmt->execute();
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		catch(PDOException $e){
+			return [];
+		};
+	}
+
+	/**
 	 * The function gets values ​​from the table by key
 	 */
 	public function getKeyValue(string $nameTable = "", string $nameColumnKey = "", string $nameColumnValue = "", string $key = ""): array
@@ -52,7 +67,7 @@ class Database
 	 * @param Access level. Default - 0. Format: integer.
 	 * @return Table. Format: an array of associative arrays.
 	 */
-	public function getTableAccess(string $nameTable = "", int $accessLevel = 0)
+	public function getTableAccess(string $nameTable = "", int $accessLevel = 0): array
 	{
 		$stmt = $this->database->prepare("SELECT * FROM " . $nameTable . " WHERE access_level = :accessLevel");
 		$stmt->bindValue(":accessLevel", $accessLevel);
@@ -128,5 +143,10 @@ class Database
 			}
 			return [];
 		}
+
+	public function test()
+	{
+		print("<p>JR</p>");
+	}
 
 }

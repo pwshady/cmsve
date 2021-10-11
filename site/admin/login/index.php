@@ -1,11 +1,7 @@
 <?
 
-$GLOBALS["page"]["body"] .= "<p>Login body</p>" .PHP_EOL;
-print_r("<p>");
-var_dump(get_defined_vars());
-print_r("</p>");
+if (!class_exists('Login')) {
+    require_once "Login.php";
+}
 
-require "Login.php";
-
-print_r("<p>" . getcwd() . "</p>");
-$login = new Login;
+$login = new Login($database);
